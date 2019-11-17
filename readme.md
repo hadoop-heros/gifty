@@ -81,7 +81,7 @@ Counts the number of reviews for each Amazon Product
 
 ##### Command
 ```
-bin/hadoop jar shared/artifacts/gifty.jar com.review_count.ReviewCountDriver input output
+bin/hadoop jar share/gifty/review-count.jar main.java.com.review_count.ReviewCountDriver input output
 ```
 
 ##### Example Output
@@ -99,7 +99,7 @@ Counts the number of reviews for each Amazon Product
 
 ##### Command
 ```
-bin/hadoop jar shared/artifacts/gifty/gifty.jar com.related_products.RelatedProductsDriver input output
+bin/hadoop jar share/gifty/related-products.jar main.java.com.related_products.RelatedProductsDriver input output
 ```
 
 ##### Example Output

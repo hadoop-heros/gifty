@@ -1,6 +1,5 @@
-package com.related_products;
+package main.java.com.related_products;
 
-import com.IntArrayWritable;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.*;

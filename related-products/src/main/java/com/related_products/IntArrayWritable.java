@@ -1,4 +1,4 @@
-package com;
+package main.java.com.related_products;
 
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;

@@ -1,4 +1,4 @@
-package com.review_count;
+package main.java.com.review_count;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;

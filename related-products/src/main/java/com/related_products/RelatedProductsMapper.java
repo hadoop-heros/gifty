@@ -1,4 +1,4 @@
-package com.related_products;
+package main.java.com.related_products;
 
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.MapReduceBase;
