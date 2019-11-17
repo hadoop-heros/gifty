@@ -85,8 +85,33 @@ bin/hadoop jar shared/artifacts/gifty.jar com.review_count.ReviewCountDriver inp
 ```
 
 ##### Example Output
-```$xslt
+```
 0972683275	219
 1400501466	43
 1400501520	20
+```
+
+### Related Products
+Counts the number of reviews for each Amazon Product
+
+##### Structure
+<review_id, [product_id1, product_id2]>
+
+##### Command
+```
+bin/hadoop jar shared/artifacts/gifty/gifty.jar com.related_products.RelatedProductsDriver input output
+```
+
+##### Example Output
+```
+0972683275	219
+1400501466	43
+1400501520	20
+```
+
+## Other Useful Commands
+
+#### Format Cluster Id
+```
+hdfs namenode -format -clusterId <cluster_id>
 ```
