@@ -1,15 +1,15 @@
 package main.java.com.related_products;
 
 import org.apache.hadoop.io.ArrayWritable;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Writable;
 
-public class IntArrayWritable extends ArrayWritable {
-    public IntArrayWritable() {
-        super(IntWritable.class);
+public class TextArrayWritable extends ArrayWritable {
+    public TextArrayWritable() {
+        super(Writable.class);
     }
 
-    public IntArrayWritable(IntWritable[] values) {
-        super(IntWritable.class, values);
+    public TextArrayWritable(Writable[] values) {
+        super(Writable.class, values);
     }
 
     @Override
