@@ -123,7 +123,9 @@ Coming soon
 
 ##### Example Output
 ```
-Coming soon
+0528881469	2.42
+0594451647	4.95
+0594481813	4.28
 ```
 
 ### Related Products
@@ -156,7 +158,7 @@ Coming soon
 
 ##### Example Output
 ```
-Coming soon
+0000013714	[{0005476798, 4.95},{0005476216, 4.28},{0005080789, 2.42}]
 ```
 
 ## Other Useful Commands
