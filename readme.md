@@ -96,14 +96,14 @@ Calculates the average rating for each product using the reviews data.
 
 ##### Command
 ```
-bin/hadoop jar share/gifty/average-rating.jar main.java.com.average_rating.AverageRatingDriver input output
+bin/hadoop jar share/gifty/average-rating.jar <input> <output>
 ```
 
 ##### Example Output
 ```
-0528881469	2
-0594451647	4
-0594481813	4
+0528881469	2.42
+0594451647	4.95
+0594481813	4.25
 ```
 
 ### Product Scores
