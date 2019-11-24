@@ -1,28 +1,16 @@
 package main.java.com.related_products;
 
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.MapReduceBase;
-import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapred.Reducer;
-import org.apache.hadoop.mapred.Reporter;
+import org.apache.hadoop.mapreduce.Reducer;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+public class RelatedProductsReducer extends Reducer<Text, TextArrayWritable, Text, TextArrayWritable> {
 
-public class RelatedProductsReducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntArrayWritable> {
-    public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntArrayWritable> outputCollector, Reporter reporter) throws IOException {
-        ArrayList<Integer> temp = new ArrayList<Integer>();
-        while (values.hasNext()) {
-            IntWritable value = values.next();
-            temp.add(value.get());
+    public void reduce(Text key, Iterable<TextArrayWritable> values, Context context) {
+        TextArrayWritable output = values.iterator().next();
+        try {
+            context.write(key, output);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        IntWritable[] relatedProducts = new IntWritable[temp.size()];
-        for (int i = 0; i < temp.size(); i++) {
-            relatedProducts[i] = new IntWritable(temp.get(i));
-        }
-
-        outputCollector.collect(key, new IntArrayWritable(relatedProducts));
     }
 }

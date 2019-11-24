@@ -1,47 +1,36 @@
 package main.java.com.related_products;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class RelatedProductsDriver {
-    public static void main(String[] args) {
-        JobClient my_client = new JobClient();
-        // Create a configuration object for the job
-        JobConf job = new JobConf(RelatedProductsDriver.class);
+    public static void main(String[] args) throws Exception {
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "RelatedProducts");
 
-        // Set a name of the Job
-        job.setJobName("RelatedProducts");
-
-        // Set Output and Input Parameters
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(IntWritable.class);
-
-        // Specify data type of output key and value
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntArrayWritable.class);
-
-        // Specify names of Mapper and Reducer Class
+        // Set Classes
+        job.setJarByClass(RelatedProductsDriver.class);
         job.setMapperClass(RelatedProductsMapper.class);
         job.setReducerClass(RelatedProductsReducer.class);
 
-        // Specify formats of the data type of Input and Output
-        job.setInputFormat(TextInputFormat.class);
-        job.setOutputFormat(TextOutputFormat.class);
+        // Set Output and Input Parameters
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(TextArrayWritable.class);
 
-        // Set input and output directories using command line arguments,
-        // arg[0] = name of input directory on HDFS
-        // arg[1] = name of output directory to be created to store output file
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(TextArrayWritable.class);
+
+        // Number of Reducers
+        job.setNumReduceTasks(1);
+
+        // Set FileDestination
+        FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        my_client.setConf(job);
-        try {
-            // Run the job
-            JobClient.runJob(job);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

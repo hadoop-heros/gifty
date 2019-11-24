@@ -92,7 +92,7 @@ bin/hadoop jar share/gifty/review-count.jar main.java.com.review_count.ReviewCou
 ```
 
 ### Related Products
-Counts the number of reviews for each Amazon Product
+Maps "also bought" products to each product id.
 
 ##### Structure
 <review_id, [product_id1, product_id2]>
@@ -104,14 +104,72 @@ bin/hadoop jar share/gifty/related-products.jar main.java.com.related_products.R
 
 ##### Example Output
 ```
-0972683275	219
-1400501466	43
-1400501520	20
+0000013714	[0005080789,0005476798,0005476216,0005064341,0005235073,1883206561,0006180116,0005064295,0871482215,
+B005HWXXCI,0006458718,9990810397,B001U5LQG6,0894770004,0002877813,0005448506,0005064309,0834193345,B007ZJE5OG]
+```
+
+### Product Scores
+Calculates a score for each product. Below is the equation we are using to calculate this score:
+```dtd
+(overall_score * review_count) / (overall_score + review_count)
+```
+This gives us a score out of 5
+
+##### Structure
+<review_id, product_score>
+
+##### Command
+```dtd
+In the works
 ```
 
 ## Other Useful Commands
 
 #### Format Cluster Id
 ```
-hdfs namenode -format -clusterId <cluster_id>
+bin/hdfs namenode -format -clusterId <cluster_id>
+```
+
+#### Delete HDFS directory
+```
+bin/hdfs dfs -rm -r <output_dir>
+```
+
+## Parsing the Product Metadata
+
+The product metadata will be used to create an array of recommended products for each product id. The product metadata
+is 10GB in size and contains 9.4 million products. Before we can feed this data into our mapreduce function, we need to
+convert to strict json using the following python code:
+
+```python
+import json
+import gzip
+
+def parse(path):
+  g = gzip.open(path, 'r')
+  for l in g:
+    yield json.dumps(eval(l))
+
+f = open("metadata.json", 'w')
+for l in parse("metadata.json.gz"):
+  f.write(l + '\n')
+```
+
+Next we use the RelatedProducts MapReduce method to map each product id to its recommended products.
+
+We end up with a file that is 1.6GB in size. Much easier to work with than the original 10GB file.
+
+## Creating a Recommended Products Lookup
+
+Now that we have a file where each Product Id is mapped to an array of related products that have been scores and sorted
+we can easily return that array to the user.
+
+Example Input:
+```
+[productId1, productId2, productId3]
+```
+
+Example Output:
+```
+[productId1: {productName, imageUrl, reviewCount, ratingCount, productScore, description}]
 ```

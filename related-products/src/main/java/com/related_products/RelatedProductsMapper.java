@@ -1,35 +1,40 @@
 package main.java.com.related_products;
 
-import org.apache.hadoop.io.*;
-import org.apache.hadoop.mapred.MapReduceBase;
-import org.apache.hadoop.mapred.Mapper;
-import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapred.Reporter;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RelatedProductsMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
-    private final static IntWritable related_id = new IntWritable(0);
+public class RelatedProductsMapper extends Mapper<LongWritable, Text, Text, TextArrayWritable> {
 
-    public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) {
-        String valueString = value.toString();
+    private Text asin = new Text();
+
+    public void map(LongWritable key, Text value, Context context) {
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(valueString);
-            JSONObject jsonObject = (JSONObject) obj;
-            String productId = jsonObject.get("asin").toString();
-            List<String> relatedProducts = new ArrayList<>();
-            JSONArray alsoViewed = (JSONArray) jsonObject.get("also_viewed");
-            if (alsoViewed != null) {
-                for (Object o : alsoViewed) {
-                    relatedProducts.add(o.toString());
+            JSONObject metadata = (JSONObject) parser.parse(value.toString());
+            if (metadata != null) {
+                asin.set(metadata.get("asin").toString());
+                JSONObject related = (JSONObject) metadata.get("related");
+                if (related != null) {
+                    JSONArray also_bought = (JSONArray) related.get("also_bought");
+                    if (also_bought != null) {
+                        ArrayList<Text> asinList = new ArrayList<>();
+                        for (Object o : also_bought) {
+                            asinList.add(new Text(o.toString()));
+                        }
+                        Text[] asinArr = new Text[asinList.size()];
+                        for (int i = 0; i < asinList.size(); i++) {
+                            asinArr[i] = asinList.get(i);
+                        }
+                        context.write(asin, new TextArrayWritable(asinArr));
+                    }
                 }
             }
-            output.collect(new Text(productId), related_id);
         } catch (Exception e) {
             e.printStackTrace();
         }
