@@ -12,7 +12,7 @@ Using IntelliJ IDE, build the Artifacts using `Build > Artifacts`
 The artifacts will be built into jar files and stored in the following directory:
 
 ```$xslt
-/hadoop/shared/artifacts
+/hadoop/share/gifty/<filename>.jar
 ```
 
 ## Run a new Map Reduce Job
@@ -81,7 +81,7 @@ Counts the number of reviews for each Amazon Product
 
 ##### Command
 ```
-bin/hadoop jar share/gifty/review-count.jar main.java.com.review_count.ReviewCountDriver input output
+bin/hadoop jar share/gifty/review-count.jar <input> <output>
 ```
 
 ##### Example Output
