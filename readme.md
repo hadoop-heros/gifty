@@ -91,6 +91,41 @@ bin/hadoop jar share/gifty/review-count.jar main.java.com.review_count.ReviewCou
 1400501520	20
 ```
 
+### Average Rating
+Calculates the average rating for each product using the reviews data.
+
+##### Command
+```
+bin/hadoop jar share/gifty/average-rating.jar main.java.com.average_rating.AverageRatingDriver input output
+```
+
+##### Example Output
+```
+0528881469	2
+0594451647	4
+0594481813	4
+```
+
+### Product Scores
+Calculates a score for each product. Below is the equation we are using to calculate this score:
+```
+(average_rating * review_count) / (average_rating + review_count)
+```
+This gives us a score out of 5
+
+##### Structure
+<review_id, product_score>
+
+##### Command
+```
+Coming soon
+```
+
+##### Example Output
+```
+Coming soon
+```
+
 ### Related Products
 Maps "also bought" products to each product id.
 
@@ -108,19 +143,20 @@ bin/hadoop jar share/gifty/related-products.jar main.java.com.related_products.R
 B005HWXXCI,0006458718,9990810397,B001U5LQG6,0894770004,0002877813,0005448506,0005064309,0834193345,B007ZJE5OG]
 ```
 
-### Product Scores
-Calculates a score for each product. Below is the equation we are using to calculate this score:
-```dtd
-(overall_score * review_count) / (overall_score + review_count)
-```
-This gives us a score out of 5
+### Recommended Products
+Maps Product Id to an array of sorted recommended products based on a calculated product score.
 
 ##### Structure
-<review_id, product_score>
+<product_id, [{product_id, product_score}]>
 
 ##### Command
-```dtd
-In the works
+```
+Coming soon
+```
+
+##### Example Output
+```
+Coming soon
 ```
 
 ## Other Useful Commands
