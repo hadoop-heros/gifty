@@ -136,7 +136,7 @@ Maps "also bought" products to each product id.
 
 ##### Command
 ```
-bin/hadoop jar share/gifty/related-products.jar main.java.com.related_products.RelatedProductsDriver input output
+bin/hadoop jar share/gifty/related-products.jar <input> <output>
 ```
 
 ##### Example Output
