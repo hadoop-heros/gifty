@@ -1,43 +1,37 @@
 package main.java.com.review_count;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class ReviewCountDriver {
-    public static void main(String[] args) {
-        JobClient my_client = new JobClient();
-        // Create a configuration object for the job
-        JobConf job_conf = new JobConf(ReviewCountDriver.class);
+    public static void main(String[] args) throws Exception {
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "ReviewCount");
 
-        // Set a name of the Job
-        job_conf.setJobName("ReviewCount");
+        // Set Classes
+        job.setJarByClass(ReviewCountDriver.class);
+        job.setMapperClass(ReviewCountMapper.class);
+        job.setReducerClass(ReviewCountReducer.class);
 
-        // Specify data type of output key and value
-        job_conf.setOutputKeyClass(Text.class);
-        job_conf.setOutputValueClass(IntWritable.class);
+        // Set Input and Output Parameters
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
 
-        // Specify names of Mapper and Reducer Class
-        job_conf.setMapperClass(ReviewCountMapper.class);
-        job_conf.setReducerClass(ReviewCountReducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
 
-        // Specify formats of the data type of Input and Output
-        job_conf.setInputFormat(TextInputFormat.class);
-        job_conf.setOutputFormat(TextOutputFormat.class);
+        // Number of Reducers
+        job.setNumReduceTasks(1);
 
-        // Set input and output directories using command line arguments,
-        // arg[0] = name of input directory on HDFS
-        // arg[1] = name of output directory to be created to store output file
-        FileInputFormat.setInputPaths(job_conf, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job_conf, new Path(args[1]));
+        // Set FileDestination
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-        my_client.setConf(job_conf);
-        try {
-            // Run the job
-            JobClient.runJob(job_conf);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

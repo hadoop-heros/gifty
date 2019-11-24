@@ -3,28 +3,25 @@ package main.java.com.review_count;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.MapReduceBase;
-import org.apache.hadoop.mapred.Mapper;
-import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapred.Reporter;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.IOException;
 
-public class ReviewCountMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
-    private final static IntWritable one = new IntWritable(1);
+public class ReviewCountMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
-    public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter)
-            throws IOException {
-        String valueString = value.toString();
+    private Text asin = new Text();
+    private IntWritable count = new IntWritable(1);
+
+    public void map(LongWritable key, Text value, Context context) {
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(valueString);
-            JSONObject jsonObject = (JSONObject)obj;
-            String productId = jsonObject.get("asin").toString();
-            output.collect(new Text(productId), one);
-        } catch(Exception e) {
+            JSONObject review = (JSONObject) parser.parse(value.toString());
+            if (review != null) {
+                asin.set(review.get("asin").toString());
+                context.write(asin, count);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
