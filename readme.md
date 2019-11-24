@@ -118,7 +118,7 @@ This gives us a score out of 5
 
 ##### Command
 ```
-Coming soon
+bin/hadoop jar share/gifty/product-scores.jar <input> <output>
 ```
 
 ##### Example Output
