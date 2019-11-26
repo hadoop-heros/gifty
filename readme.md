@@ -258,6 +258,8 @@ bin/hdfs dfs -get output/product-scores output/product-scores
 ```
 
 ## MapFile the Product Scores
+
+##### Create the MapFile
 ```
 bin/hadoop jar share/gifty/mapfile-converter.jar output/product-scores/part-r-00000 output/product-scores-map
 ```
@@ -304,4 +306,11 @@ bin/hdfs dfs -get output/related-products-map output/related-products-map
 ##### Test Read the MapFile
 ```
 bin/hadoop jar share/gifty/mapfile-reader.jar output/product-scores-map 0528881469
+```
+
+## Extract Recommended Products from Maps
+
+##### Run Recommend Me
+```
+bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/product-scores-map/ 1400501520
 ```
