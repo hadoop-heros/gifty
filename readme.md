@@ -153,12 +153,30 @@ Maps Product Id to an array of sorted recommended products based on a calculated
 
 ##### Command
 ```
-Coming soon
+bin/hadoop jar share/gifty/recommended-products.jar <input1> <input2> <output>
 ```
 
 ##### Example Output
 ```
 0000013714	[{0005476798, 4.95},{0005476216, 4.28},{0005080789, 2.42}]
+```
+
+## Map File Commands
+
+### Convert Map File
+Converts a text file separated by \t into a HDFS MapFile
+
+### Command
+```
+bin/hadoop jar share/gifty/mapfile-converter.jar <input> <output>
+```
+
+### Read Map File
+Searches a MapFile for a Key and returns values if any
+
+### Command
+```
+bin/hadoop jar share/gifty/mapfle-reader.jar <input> <key>
 ```
 
 ## Other Useful Commands
@@ -210,4 +228,80 @@ Example Input:
 Example Output:
 ```
 [productId1: {productName, imageUrl, reviewCount, ratingCount, productScore, description}]
+```
+
+## Doing the Project
+
+## Create Directories
+```
+bin/hdfs dfs -mkdir /user
+bin/hdfs dfs -mkdir /user/jason
+bin/hdfs dfs -mkdir /user/jason/input
+bin/hdfs dfs -mkdir /user/jason/output
+```
+
+## MapReduce the Product Scores
+
+##### Add Reviews to HDFS
+```
+bin/hdfs dfs -put data/amazon/reviews_Electronics_5.json input/reviews
+```
+
+##### Run Product Scores MapReduce Job
+```
+bin/hadoop jar share/gifty/product-scores.jar input/reviews output/product-scores
+```
+
+##### Copy Results from HDFS to local FS
+```
+bin/hdfs dfs -get output/product-scores output/product-scores
+```
+
+## MapFile the Product Scores
+```
+bin/hadoop jar share/gifty/mapfile-converter.jar output/product-scores/part-r-00000 output/product-scores-map
+```
+
+##### Copy MapFile from HDFS to local FS
+```
+bin/hdfs dfs -get output/product-scores-map output/product-scores-map
+```
+
+##### Test Read the MapFile
+```
+bin/hadoop jar share/gifty/mapfile-reader.jar output/product-scores-map 0528881469
+```
+
+## MapReduce the Related Products
+
+##### Add Metadata to HDFS
+```
+bin/hdfs dfs -put data/amazon/metadata.json input/metadata
+```
+
+##### Run Related Product Scores MapReduce Job
+```
+bin/hadoop jar share/gifty/related-products.jar input/metadata output/related-products
+```
+
+##### Copy Results from HDFS to local FS
+```
+bin/hdfs dfs -get output/related-products output/related-products
+```
+
+## MapFile the Related Products
+
+##### Create the MapFile
+```
+bin/hadoop jar share/gifty/mapfile-converter.jar output/related-products/part-r-00000 output/related-products-map
+```
+
+##### Copy MapFile from HDFS to local FS
+```
+bin/hdfs dfs -get output/related-products-map output/related-products-map
+```
+
+##### Test Read the MapFile
+```
+bin/hadoop jar share/gifty/mapfile-reader.jar output/product-scores-map 0528881469
 ```
