@@ -244,7 +244,7 @@ bin/hdfs dfs -mkdir /user/jason/output
 
 ##### Add Reviews to HDFS
 ```
-bin/hdfs dfs -put data/amazon/reviews_Electronics_5.json input/reviews
+bin/hdfs dfs -put data/amazon/reviews.json input/reviews
 ```
 
 ##### Run Product Scores MapReduce Job
@@ -261,7 +261,7 @@ bin/hdfs dfs -get output/product-scores output/product-scores
 
 ##### Create the MapFile
 ```
-bin/hadoop jar share/gifty/mapfile-converter.jar output/product-scores/part-r-00000 output/product-scores-map
+bin/hadoop jar share/gifty/mapfile-writer.jar output/product-scores/part-r-00000 output/product-scores-map
 ```
 
 ##### Copy MapFile from HDFS to local FS
@@ -295,7 +295,7 @@ bin/hdfs dfs -get output/related-products output/related-products
 
 ##### Create the MapFile
 ```
-bin/hadoop jar share/gifty/mapfile-converter.jar output/related-products/part-r-00000 output/related-products-map
+bin/hadoop jar share/gifty/mapfile-writer.jar output/related-products/part-r-00000 output/related-products-map
 ```
 
 ##### Copy MapFile from HDFS to local FS
