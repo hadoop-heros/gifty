@@ -10,14 +10,10 @@ public class MetaDataReducer extends Reducer<Text, Text, Text, Text> {
 
     public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException{
 
+        //nothing to reduce
+        Text metadata = values.iterator().next();
         try{
-            String metadata = "";
-            TextArrayWritable output = new TextArrayWritable();
-            for(Text val : values){
-                metadata = metadata.concat(val.toString());
-                metadata = metadata.concat(" ");
-            }
-            context.write(key, new Text(metadata));
+            context.write(key, metadata);
 
         } catch (Exception e) {
             e.printStackTrace();
