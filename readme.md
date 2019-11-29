@@ -161,6 +161,23 @@ bin/hadoop jar share/gifty/recommended-products.jar <input1> <input2> <output>
 0000013714	[{0005476798, 4.95},{0005476216, 4.28},{0005080789, 2.42}]
 ```
 
+### Metadata
+Maps the title and imageURL to the Product ID
+
+#### Structure
+<product_id, {title, imageURL}>
+
+#### Command
+```
+bin/hadoop jar share/gifty/Metadata.jar <input> <output>
+```
+
+#### Example Output
+```
+0011300000      {"title":"Genuine Geovision 1 Channel 3rd Party NVR IP Software with USB Dongle Onvif PSIA","imageURL":"https://images-na.ssl-images-amazon.com/images/I/411uoWa89KL._SS40_.jpg"}
+```
+
+
 ## Map File Commands
 
 ### Convert Map File
