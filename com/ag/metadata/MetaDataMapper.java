@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class MetaDataMapper extends Mapper<Object, Text, Text, Text> {
 
@@ -26,12 +25,9 @@ public class MetaDataMapper extends Mapper<Object, Text, Text, Text> {
 
            if(obj.get("image") != null) {
                JSONArray imgObj = (JSONArray) obj.get("image");
-               String imgUrl = "(";
-               for(Object o : imgObj){
-                   imgUrl = imgUrl.concat(o.toString());
-                   imgUrl = imgUrl.concat(", ");
-               }
-               imgUrl = imgUrl.concat(")");
+               String imgUrl = "";
+
+               imgUrl = imgUrl.concat(imgObj.get(0).toString());
                context.write(new Text(ProductID), new Text(imgUrl));
            }
         } catch(Exception e) {
