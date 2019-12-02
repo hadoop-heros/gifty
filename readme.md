@@ -161,12 +161,31 @@ bin/hadoop jar share/gifty/recommended-products.jar <input1> <input2> <output>
 0000013714	[{0005476798, 4.95},{0005476216, 4.28},{0005080789, 2.42}]
 ```
 
+### Product Metadata
+Maps Product Id to Product Object Json
+
+##### Structure
+<product_id, {"asin":"118920", "title":"Product title", "imgUrl":"http://img.url/"}>
+
+##### Command
+```
+bin/hadoop jar share/gifty/product-metadata.jar input/metadata output/product-metadata
+```
+
+##### Example Output
+```
+007001356X	{"asin":"007001356X","title":"Diez Cuentos De Eva Luna Con Guia De Comprension Y Repaso De Gramatica (Spanish and English Edition)","imgUrl":"http://ecx.images-amazon.com/images/I/51FJs0Y-jBL.jpg"}
+0070013683	{"asin":"0070013683","title":"An Introduction to American Forestry","imgUrl":"http://ecx.images-amazon.com/images/I/31OMNKvQqgL.jpg"}
+0070013721	{"asin":"0070013721","title":"Apartments for the Affluent: A Historical Survey of Buildings in New York","imgUrl":"http://ecx.images-amazon.com/images/I/41EsuBX8ZIL.jpg"}
+```
+
 ## Map File Commands
 
 ### Convert Map File
+
 Converts a text file separated by \t into a HDFS MapFile
 
-### Command
+##### Command
 ```
 bin/hadoop jar share/gifty/mapfile-converter.jar <input> <output>
 ```
@@ -174,7 +193,7 @@ bin/hadoop jar share/gifty/mapfile-converter.jar <input> <output>
 ### Read Map File
 Searches a MapFile for a Key and returns values if any
 
-### Command
+##### Command
 ```
 bin/hadoop jar share/gifty/mapfle-reader.jar <input> <key>
 ```
@@ -215,22 +234,7 @@ Next we use the RelatedProducts MapReduce method to map each product id to its r
 
 We end up with a file that is 1.6GB in size. Much easier to work with than the original 10GB file.
 
-## Creating a Recommended Products Lookup
-
-Now that we have a file where each Product Id is mapped to an array of related products that have been scores and sorted
-we can easily return that array to the user.
-
-Example Input:
-```
-[productId1, productId2, productId3]
-```
-
-Example Output:
-```
-[productId1: {productName, imageUrl, reviewCount, ratingCount, productScore, description}]
-```
-
-## Doing the Project
+# Setting up the Recommendation System
 
 ## Create Directories
 ```
@@ -301,6 +305,35 @@ bin/hadoop jar share/gifty/mapfile-writer.jar output/related-products/part-r-000
 ##### Copy MapFile from HDFS to local FS
 ```
 bin/hdfs dfs -get output/related-products-map output/related-products-map
+```
+
+##### Test Read the MapFile
+```
+bin/hadoop jar share/gifty/mapfile-reader.jar output/product-scores-map 0528881469
+```
+
+## MapReduce the Product Metadata
+
+##### Run Product Metadata MapReduce Job
+```
+bin/hadoop jar share/gifty/product-metadata.jar input/metadata output/product-metadata
+```
+
+##### Copy Results from HDFS to local FS
+```
+bin/hdfs dfs -get output/product-metadata output/product-metadata
+```
+
+## MapFile the Product Metadata
+
+##### Create the MapFile
+```
+bin/hadoop jar share/gifty/mapfile-writer.jar output/product-metadata/part-r-00000 output/product-metadata-map
+```
+
+##### Copy MapFile from HDFS to local FS
+```
+bin/hdfs dfs -get output/product-scores-map output/product-scores-map
 ```
 
 ##### Test Read the MapFile
