@@ -10,7 +10,6 @@ import org.json.simple.parser.JSONParser;
 import java.util.ArrayList;
 
 public class RelatedProductsMapper extends Mapper<LongWritable, Text, Text, TextArrayWritable> {
-
     public void map(LongWritable key, Text value, Context context) {
         JSONParser parser = new JSONParser();
         try {
@@ -37,6 +36,5 @@ public class RelatedProductsMapper extends Mapper<LongWritable, Text, Text, Text
             e.printStackTrace();
         }
     }
-
     private Text asin = new Text();
 }
