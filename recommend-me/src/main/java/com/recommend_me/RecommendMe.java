@@ -15,8 +15,6 @@ import java.util.Iterator;
 public class RecommendMe {
     public static void main(String[] args) {
 
-        // TODO: Support multiple id inputs
-
         Configuration conf = new Configuration();
         FileSystem fs;
         Text txtKey = new Text(args[3]);
@@ -25,7 +23,7 @@ public class RecommendMe {
         Gson gson = new Gson();
         JSONParser parser = new JSONParser();
 
-        // Get asin inputs
+        // Get asin inputs from args
         ArrayList<String> asinList = new ArrayList<>();
         for (int i = 3; i < args.length; i++) {
             txtKey.set(args[i]);
