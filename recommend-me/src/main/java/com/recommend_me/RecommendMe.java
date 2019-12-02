@@ -15,21 +15,19 @@ public class RecommendMe {
         FileSystem fs;
         Text txtKey = new Text(args[2]);
         Text txtValue = new Text();
-        Reader productsReader;
-        Reader scoresReader;
         Recommended recommended = new Recommended();
         Gson gson = new Gson();
 
-        // Get the array from Related Products MapFile
         try {
             fs = FileSystem.get(conf);
-            productsReader = new Reader(fs, args[0], conf);
-            scoresReader = new Reader(fs, args[1], conf);
+            recommended.asin = txtKey.toString();
+            Reader productsReader = new Reader(fs, args[0], conf);
             productsReader.get(txtKey, txtValue);
+            productsReader.close();
+            productsReader = null;
             String productsArrStr = txtValue.toString();
             String[] productsArr = productsArrStr.substring(productsArrStr.indexOf("[") + 1, productsArrStr.indexOf("]")).split(",");
-            System.out.println("productsArr.length():");
-            System.out.println(productsArr.length);
+            Reader scoresReader = new Reader(fs, args[1], conf);
             for (String s : productsArr) {
                 Product product = new Product();
                 Text txtScore = new Text();
