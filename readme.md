@@ -309,7 +309,7 @@ bin/hdfs dfs -get output/related-products-map output/related-products-map
 
 ##### Test Read the MapFile
 ```
-bin/hadoop jar share/gifty/mapfile-reader.jar output/product-scores-map 0528881469
+bin/hadoop jar share/gifty/mapfile-reader.jar output/related-products-map 0000031852
 ```
 
 ## MapReduce the Product Metadata
@@ -338,12 +338,12 @@ bin/hdfs dfs -get output/product-scores-map output/product-scores-map
 
 ##### Test Read the MapFile
 ```
-bin/hadoop jar share/gifty/mapfile-reader.jar output/product-scores-map 0528881469
+bin/hadoop jar share/gifty/mapfile-reader.jar output/product-metadata-map 0000031852
 ```
 
 ## Extract Recommended Products from Maps
 
 ##### Run Recommend Me
 ```
-bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/product-scores-map/ 1400501520
+bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/product-scores-map/ output/product-metadata-map 0000031852
 ```
