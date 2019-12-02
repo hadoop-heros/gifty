@@ -18,18 +18,24 @@ public class RelatedProductsMapper extends Mapper<LongWritable, Text, Text, Text
                 asin.set(metadata.get("asin").toString());
                 JSONObject related = (JSONObject) metadata.get("related");
                 if (related != null) {
+                    ArrayList<Text> asinList = new ArrayList<>();
                     JSONArray also_bought = (JSONArray) related.get("also_bought");
                     if (also_bought != null) {
-                        ArrayList<Text> asinList = new ArrayList<>();
                         for (Object o : also_bought) {
                             asinList.add(new Text(o.toString()));
                         }
-                        Text[] asinArr = new Text[asinList.size()];
-                        for (int i = 0; i < asinList.size(); i++) {
-                            asinArr[i] = asinList.get(i);
-                        }
-                        context.write(asin, new TextArrayWritable(asinArr));
                     }
+                    JSONArray also_viewed = (JSONArray) related.get("also_viewed");
+                    if (also_viewed != null) {
+                        for (Object o : also_viewed) {
+                            asinList.add(new Text(o.toString()));
+                        }
+                    }
+                    Text[] asinArr = new Text[asinList.size()];
+                    for (int i = 0; i < asinList.size(); i++) {
+                        asinArr[i] = asinList.get(i);
+                    }
+                    context.write(asin, new TextArrayWritable(asinArr));
                 }
             }
         } catch (Exception e) {

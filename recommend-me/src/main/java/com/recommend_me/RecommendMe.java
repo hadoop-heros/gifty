@@ -71,7 +71,7 @@ public class RecommendMe {
                     if (metadata.get("title") != null) {
                         p.title = metadata.get("title").toString();
                     } else {
-                        iterator.remove();
+                        // iterator.remove();
                     }
                 }
             }
