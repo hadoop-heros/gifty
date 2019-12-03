@@ -676,10 +676,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
 ```
 
 </details>
-## Input:
-```
-bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/product-scores-map/ output/product-metadata-map B00005BZ3Z B00005CDPY B000001OMJ B0019FLMP2
-```
 
 ## Case #2: Gift for Student
 
