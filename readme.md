@@ -352,12 +352,12 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
 
 ## Case #1: Gift for Professor
 
-#### Input:
+#### Input
 ```
 bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/product-scores-map/ output/product-metadata-map 1621522172 962888400X 9991122060 B001AF9M12
 ```
 
-#### Output:
+#### Output
 <details>
 
 ```
@@ -383,11 +383,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Estee Lauder Lilly Pulitzer Snapdragon Print Cosmetic Bag wi/ 2 Travel Bottles"
    },
    {
-      "asin":"B00CIQ86Q4",
-      "score":3.62,
-      "title":""
-   },
-   {
       "asin":"B001OWFQ6G",
       "score":3.61,
       "title":"Vintage Classic Leopard Tortoise Wayfarer Style Sunglasses"
@@ -403,34 +398,14 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"iPhone 4 / 4S Anti-Glare, Anti-Scratch, Anti-Fingerprint - Matte Finishing Screen Protector"
    },
    {
-      "asin":"B0045LJC1I",
-      "score":3.5,
-      "title":""
-   },
-   {
       "asin":"B0002T6AZS",
       "score":3.47,
       "title":"Fratelli Orsini Women\u0027s Italian Silk Lined Leather Gloves"
    },
    {
-      "asin":"B004LEKOT8",
-      "score":3.43,
-      "title":""
-   },
-   {
-      "asin":"B004L04SW6",
-      "score":3.21,
-      "title":""
-   },
-   {
       "asin":"047050160X",
       "score":3.17,
       "title":"Lilly: Palm Beach, Tropical Glamour, and the Birth of a Fashion Legend"
-   },
-   {
-      "asin":"B001EQOXPC",
-      "score":2.92,
-      "title":""
    },
    {
       "asin":"B0018MZPHC",
@@ -483,24 +458,9 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Lilly Pulitzer iPad Mini Case with Smart Cover - Coronado Crab"
    },
    {
-      "asin":"B00852KJUQ",
-      "score":2.14,
-      "title":""
-   },
-   {
       "asin":"B007N6IIB2",
       "score":2.12,
       "title":"Our Lady of Guadalupe John Paul II Devotional Religious Women\u0027s Hand Tote Bag"
-   },
-   {
-      "asin":"B001FMCHHQ",
-      "score":2.12,
-      "title":""
-   },
-   {
-      "asin":"B004HIZLWS",
-      "score":2.06,
-      "title":""
    },
    {
       "asin":"B00BWFDIS8",
@@ -511,11 +471,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "asin":"B00AY09VYC",
       "score":2.06,
       "title":"Lilly Pulitzer iPhone 5 Cover - Chiquita Bonita"
-   },
-   {
-      "asin":"B0002T6A8U",
-      "score":2.0,
-      "title":""
    },
    {
       "asin":"B0091MCHX6",
@@ -611,11 +566,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "asin":"B00DU07O9W",
       "score":1.11,
       "title":"Lilly Pulitzer iPhone 5 Mobile Charger - Tuck In Sun (Elephant)"
-   },
-   {
-      "asin":"B007PQF6TC",
-      "score":0.83,
-      "title":""
    },
    {
       "asin":"B0091SZ1FQ",
@@ -865,11 +815,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Russell Hobbs Electric Kettle"
    },
    {
-      "asin":"B009LSKP6G",
-      "score":3.93,
-      "title":""
-   },
-   {
       "asin":"B007PW9TRQ",
       "score":3.9,
       "title":"Fossil Women\u0027s ES3110 \u0026quot;Georgia\u0026quot; Stainless Steel Bangle Watch"
@@ -878,11 +823,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "asin":"B004MFTKKU",
       "score":3.9,
       "title":"Fossil Women\u0027s ES2889 Riley Analog Display Analog Quartz Rose Gold Watch"
-   },
-   {
-      "asin":"B0047BIWSK",
-      "score":3.89,
-      "title":""
    },
    {
       "asin":"B008D902Q2",
@@ -1652,11 +1592,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Camp Chef Deluxe 10IN Dutch Oven"
    },
    {
-      "asin":"B002YFEJ92",
-      "score":3.84,
-      "title":""
-   },
-   {
       "asin":"1565237242",
       "score":3.84,
       "title":"Easy Campfire Cooking: 200+ Family Fun Recipes for Cooking Over Coals and In the Flames with a Dutch Oven, Foil Packets, and More!"
@@ -1762,11 +1697,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Hopkins TRASH-BLA Pop Up Trash Can"
    },
    {
-      "asin":"B000IXLNTQ",
-      "score":3.52,
-      "title":""
-   },
-   {
       "asin":"B00CMLQXM4",
       "score":3.47,
       "title":"H2H Mens Various Colors Fine Cotton Giraffe Polo Shirts"
@@ -1797,11 +1727,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Wenzel Deluxe Mess Kit"
    },
    {
-      "asin":"B000TGQT0A",
-      "score":3.36,
-      "title":""
-   },
-   {
       "asin":"B001XUS4QI",
       "score":3.34,
       "title":"Stansport Cast Iron 4 Quart Dutch Oven"
@@ -1825,11 +1750,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "asin":"B00168XMD2",
       "score":3.25,
       "title":"Coleman Cool Zephyr Ceiling Fan with Light"
-   },
-   {
-      "asin":"B001HO486K",
-      "score":3.23,
-      "title":""
    },
    {
       "asin":"B0009PUR4A",
@@ -1877,11 +1797,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Sturgis Bike Week Classic Rally Motorcycle Distressed Retro Vintage Tin Sign"
    },
    {
-      "asin":"B003TZ0XLO",
-      "score":2.88,
-      "title":""
-   },
-   {
       "asin":"B00BCJX6TU",
       "score":2.87,
       "title":"Timberland Women\u0027s Brookton Roll Top Boot"
@@ -1900,11 +1815,6 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "asin":"B004H0YWSA",
       "score":2.71,
       "title":"Texsport Pre-Seasoned Cast Iron Dutch Oven - 8 Quart"
-   },
-   {
-      "asin":"B0026MRNGO",
-      "score":2.71,
-      "title":""
    },
    {
       "asin":"B002V9XVDQ",
@@ -1957,34 +1867,14 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"King Kooker CI4S Pre-seasoned Outdoor Cast Iron Dutch Oven, 4-Quart"
    },
    {
-      "asin":"B002XF8106",
-      "score":2.06,
-      "title":""
-   },
-   {
-      "asin":"B001AQVMDM",
-      "score":2.0,
-      "title":""
-   },
-   {
       "asin":"B004H13NZM",
       "score":1.95,
       "title":"Texsport Pre-Seasoned Cast Iron Dutch Oven without Legs - 4 Quart"
    },
    {
-      "asin":"B00008GKDV",
-      "score":1.88,
-      "title":""
-   },
-   {
       "asin":"B009PPFFLU",
       "score":1.83,
       "title":"King Kooker Pre-seasoned Outdoor Cast Iron Dutch Oven with Feet, 8-Quart"
-   },
-   {
-      "asin":"B00063RX0Q",
-      "score":1.43,
-      "title":""
    },
    {
       "asin":"B001EPPJB0",
@@ -2002,29 +1892,9 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Gregory Savant 48 Backpack"
    },
    {
-      "asin":"B001CM8SOA",
-      "score":1.27,
-      "title":""
-   },
-   {
       "asin":"B00GT1RKE8",
       "score":1.2,
       "title":"Toddler Boys\u0027 6 Inch Premium Boots"
-   },
-   {
-      "asin":"B003OBZRXM",
-      "score":0.83,
-      "title":""
-   },
-   {
-      "asin":"B008689CNE",
-      "score":0.83,
-      "title":""
-   },
-   {
-      "asin":"B002AQM6MM",
-      "score":0.83,
-      "title":""
    },
    {
       "asin":"B005GS6X2A",
@@ -2032,54 +1902,14 @@ bin/hadoop jar share/gifty/recommend-me.jar output/related-products-map/ output/
       "title":"Kelty Ridgeway 50.8 Liter Internal Frame Backpack \u0026amp; Hydration System"
    },
    {
-      "asin":"B005IDBSIM",
-      "score":0.83,
-      "title":""
-   },
-   {
       "asin":"B0000AUT69",
       "score":0.83,
       "title":"Texsport CAST IRON LID LIFTER"
    },
    {
-      "asin":"B0009QFS5W",
-      "score":0.8,
-      "title":""
-   },
-   {
-      "asin":"B002CVUSVQ",
-      "score":0.8,
-      "title":""
-   },
-   {
-      "asin":"B001R4BY1W",
-      "score":0.8,
-      "title":""
-   },
-   {
-      "asin":"B0085J8UL4",
-      "score":0.75,
-      "title":""
-   },
-   {
-      "asin":"B007R0I78I",
-      "score":0.67,
-      "title":""
-   },
-   {
       "asin":"B0010FNKQU",
       "score":0.5,
       "title":"Texsport Cast Iron Dutch Oven - 2 Quart"
-   },
-   {
-      "asin":"B00967K6DO",
-      "score":0.5,
-      "title":""
-   },
-   {
-      "asin":"B005GY8RZK",
-      "score":0.5,
-      "title":""
    }
 ]
 ```
